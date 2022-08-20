@@ -1,9 +1,17 @@
+/*
+Rover computer service - turns COM data into action
+*/
+
+
 void setup() {
-  // put your setup code here, to run once:
+  Serial.begin(115200);
+  Serial.setTimeout(0);
+  int incomdata = -1;
 
 }
 
+
 void loop() {
-  // put your main code here, to run repeatedly:
+  incomdata = Serial.read()
 
 }
