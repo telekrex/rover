@@ -1,23 +1,34 @@
 #!/usr/bin/env python3
-# Input service - turns controller into COM data
-
 import pygame
 from pygame.locals import *
 pygame.init()
-pygame.joystick.init()
-clock = pygame.time.Clock()
-js = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
+screen = pygame.display.set_mode((100, 100))
+r = True
+
+def exit():
+    global r
+    r = False
+    print('Rover control closed')
 
 
-def clamp():
-    return ''
+def main():
+    global r
+    while r:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    exit()
+                if event.key == pygame.K_f:
+                    print('L motor')
+                if event.key == pygame.K_j:
+                    print('R motor')
 
-# while True:
-#     for event in pygame.event.get():
-#         if event.type == JOYAXISMOTION:
-#             print(event)
+        pygame.display.update()
 
 
 if __name__ == "__main__":
-    print('working')
+    print('Rover control is online')
+    main()
